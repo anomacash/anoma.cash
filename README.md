@@ -2,6 +2,8 @@
 
 **Privacy-Enhanced Cash on Solana**
 
+👉 **Live:** [https://anoma.cash/](https://anoma.cash/)
+
 Anoma is a privacy-focused wallet layer on Solana that reduces on-chain linkability between deposits and withdrawals through address rotation, pooled execution, and locally enforced balance abstraction. Users can deposit, manage, and withdraw SOL and SPL tokens without withdrawals being directly tied to the original deposit addresses.
 
 ---
