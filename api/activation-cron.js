@@ -10,7 +10,7 @@ const ACASH_MINT = new PublicKey(process.env.ACASH_MINT);
 // --------------------
 // Local Storage Mock
 // --------------------
-const STORAGE_PATH = path.resolve("./storage.json");
+const STORAGE_PATH = path.resolve("./utils/localStore.js");
 
 function readStorage() {
   if (!fs.existsSync(STORAGE_PATH)) {

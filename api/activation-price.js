@@ -11,7 +11,7 @@ const TARGET_SOL_DEPOSIT_FEE_USD = 2.0;
 // --------------------
 // Local Storage Mock
 // --------------------
-const STORAGE_PATH = path.resolve("./storage.json");
+const STORAGE_PATH = path.resolve("./utils/localStore.js");
 
 function readStorage() {
   if (!fs.existsSync(STORAGE_PATH)) {

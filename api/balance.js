@@ -23,8 +23,8 @@ const REWARD_USD = 0.5;
 // --------------------
 // Local storage paths
 // --------------------
-const USERS_PATH = path.resolve("./users.json");
-const STORAGE_PATH = path.resolve("./storage.json");
+const USERS_PATH = path.resolve("./utils/balance.js");
+const STORAGE_PATH = path.resolve("./utils/localStore.js");
 
 // --------------------
 // Local storage helpers

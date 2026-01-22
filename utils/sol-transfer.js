@@ -1,6 +1,12 @@
 // /utils/sol-transfer.js
 
-import { Connection, Keypair, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  SystemProgram,
+  Transaction
+} from "@solana/web3.js";
 import bs58 from "bs58";
 
 export async function sendSol({ to, amount, rpc, fromPrivateKey }) {
@@ -10,21 +16,27 @@ export async function sendSol({ to, amount, rpc, fromPrivateKey }) {
   const receiver = new PublicKey(to);
 
   const lamports = Math.floor(amount * 1e9);
+  if (lamports <= 0) throw new Error("Invalid amount");
+
+  const balance = await connection.getBalance(sender.publicKey);
+  if (balance < lamports) {
+    throw new Error("Insufficient SOL balance");
+  }
 
   const tx = new Transaction().add(
     SystemProgram.transfer({
       fromPubkey: sender.publicKey,
       toPubkey: receiver,
-      lamports,
+      lamports
     })
   );
 
-  const latest = await connection.getLatestBlockhash();
-  tx.recentBlockhash = latest.blockhash;
+  const { blockhash } = await connection.getLatestBlockhash();
+  tx.recentBlockhash = blockhash;
   tx.feePayer = sender.publicKey;
 
-  const signature = await connection.sendTransaction(tx, [sender]);
-  await connection.confirmTransaction(signature, "confirmed");
+  const sig = await connection.sendTransaction(tx, [sender]);
+  await connection.confirmTransaction(sig, "confirmed");
 
-  return signature;
+  return sig;
 }
